@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Date and Emojis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .clock-container {
+            text-align: center;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .clock {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .clock #date {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .clock span {
+            margin: 0 5px;
+        }
+
+        #hours {
+            color: #ff69b4;
+        }
+
+        #minutes {
+            color: #33cc33;
+        }
+
+        #seconds {
+            color: #6666ff;
+        }
+
+        #milliseconds {
+            font-size: 24px;
+            color: #999;
+        }
+
+        .emoji {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="message">⏰ See time today</div>
+        <div class="clock">
+            <div id="date">📅 <span id="date-text"></span></div>
+            <div id="time">
+                <span id="hours"></span>:
+                <span id="minutes"></span>:
+                <span id="seconds"></span>:
+                <span id="milliseconds"></span>
+                <span class="emoji">⌚</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dateElement = document.querySelector('#date-text');
+        const hoursElement = document.querySelector('#hours');
+        const minutesElement = document.querySelector('#minutes');
+        const secondsElement = document.querySelector('#seconds');
+        const millisecondsElement = document.querySelector('#milliseconds');
+
+        function updateClock() {
+            const now = new Date();
+
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const milliseconds = now.getMilliseconds().toString().padStart(3, '0');
+
+            dateElement.textContent = `${day}-${month}-${year}`;
+            hoursElement.textContent = hours;
+            minutesElement.textContent = minutes;
+            secondsElement.textContent = seconds;
+            millisecondsElement.textContent = milliseconds;
+        }
+
+        setInterval(updateClock, 1); // update clock every 1 millisecond
+        updateClock();
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .clock {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        .clock span {
+            margin: 0 10px;
+        }
+
+        #hours {
+            color: #ff69b4;
+        }
+
+        #minutes {
+            color: #33cc33;
+        }
+
+        #seconds {
+            color: #6666ff;
+        }
+
+        #milliseconds {
+            font-size: 24px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <span id="hours"></span>
+            <span id="minutes"></span>
+            <span id="seconds"></span>
+            <span id="milliseconds"></span>
+        </div>
+    </div>
+
+    <script>
+        const clockContainer = document.querySelector('.clock-container');
+        const hoursElement = document.querySelector('#hours');
+        const minutesElement = document.querySelector('#minutes');
+        const secondsElement = document.querySelector('#seconds');
+        const millisecondsElement = document.querySelector('#milliseconds');
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
+
+            hoursElement.textContent = hours.toString().padStart(2, '0');
+            minutesElement.textContent = minutes.toString().padStart(2, '0');
+            secondsElement.textContent = seconds.toString().padStart(2, '0');
+            millisecondsElement.textContent = milliseconds.toString().padStart(3, '0');
+        }
+
+        setInterval(updateClock, 1); // update clock every 1 millisecond
+    </script>
+</body>
+</html>
